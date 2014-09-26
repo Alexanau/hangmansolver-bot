@@ -4,7 +4,7 @@ var fs = require('fs');
 var file = process.argv[2];
 
 var config = {
-channels: ["#osuosc-hangman"],
+channels: ["#osuosc-hangman-testing"],
 	server: "irc.freenode.net",
 	botName: "Anti-Hangman-Botman"
 };
@@ -27,7 +27,7 @@ for (var i = 0; i < config.channels.length; i++) {
 	block[channel] = 0;
 }
 
-var enemy = 'Hangman-Botman';
+var enemy = 'Hangman-Botman1';
 
 var makeGuess = function(channel,regExp){
 	console.log("regexp: "+regExp.toString());
@@ -91,7 +91,7 @@ bot.addListener("message", function(from, to, text, message) {
 				console.log("pattern: "+pattern[to]);
 				makeGuess(to,new RegExp(pattern[to],"gi"));
 				block[to] = 0;
-			}else if(text == '|'&&block[to] >= 5){
+			}else if(block[to] >= 5){
 				makeGuess(to,new RegExp(pattern[to],"gi"));
 			}
 			block[to] += 1;
